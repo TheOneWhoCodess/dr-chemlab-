@@ -101,12 +101,6 @@ export default function HeroSlider() {
                     arrow_forward
                   </span>
                 </Link>
-                <Link
-                  href="/contacts"
-                  className="rounded-lg border border-deep-navy px-8 py-4 text-title-lg text-deep-navy transition-colors hover:bg-deep-navy hover:text-lab-white"
-                >
-                  Our Portfolio
-                </Link>
               </div>
             </div>
           ))}
