@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useRef, useState, type ChangeEvent, type FormEvent } from "react";
 
 type FormState = {
   name: string;
@@ -18,19 +18,53 @@ const initialState: FormState = {
   message: "",
 };
 
+const MAX_ATTACHMENT_BYTES = 10 * 1024 * 1024; // 10MB, matches the API route's limit
+
 function isValidEmail(value: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 }
 
+function formatBytes(bytes: number) {
+  if (bytes < 1024) return `${bytes} B`;
+  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(0)} KB`;
+  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+}
+
 export default function ContactForm() {
   const [form, setForm] = useState<FormState>(initialState);
-  const [errors, setErrors] = useState<Partial<Record<keyof FormState, string>>>({});
+  const [attachment, setAttachment] = useState<File | null>(null);
+  const [errors, setErrors] = useState<
+    Partial<Record<keyof FormState | "attachment", string>>
+  >({});
   const [status, setStatus] = useState<Status>("idle");
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleChange = (field: keyof FormState) => (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     setForm((prev) => ({ ...prev, [field]: e.target.value }));
+  };
+
+  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0] ?? null;
+
+    if (file && file.size > MAX_ATTACHMENT_BYTES) {
+      setErrors((prev) => ({
+        ...prev,
+        attachment: "Attachment is too large (10MB max).",
+      }));
+      setAttachment(null);
+      if (fileInputRef.current) fileInputRef.current.value = "";
+      return;
+    }
+
+    setErrors((prev) => ({ ...prev, attachment: undefined }));
+    setAttachment(file);
+  };
+
+  const removeAttachment = () => {
+    setAttachment(null);
+    if (fileInputRef.current) fileInputRef.current.value = "";
   };
 
   const validate = (): boolean => {
@@ -48,7 +82,7 @@ export default function ContactForm() {
       nextErrors.message = "Please enter a message.";
     }
 
-    setErrors(nextErrors);
+    setErrors((prev) => ({ ...prev, ...nextErrors }));
     return Object.keys(nextErrors).length === 0;
   };
 
@@ -65,6 +99,9 @@ export default function ContactForm() {
       body.set("email", form.email);
       body.set("phone", form.phone);
       body.set("message", form.message);
+      if (attachment) {
+        body.set("attachment", attachment);
+      }
 
       // Note: no Content-Type header here — the browser sets the
       // multipart/form-data boundary automatically for FormData bodies.
@@ -77,6 +114,7 @@ export default function ContactForm() {
 
       setStatus("success");
       setForm(initialState);
+      removeAttachment();
     } catch {
       setStatus("error");
     }
@@ -178,6 +216,59 @@ export default function ContactForm() {
           <p id="message-error" className="text-label-sm mt-1 text-secondary">
             {errors.message}
           </p>
+        )}
+      </div>
+
+      <div>
+        <label htmlFor="attachment" className="text-label-md mb-1.5 block text-on-surface">
+          Attachment <span className="text-on-surface-variant">(optional, 10MB max)</span>
+        </label>
+
+        {attachment ? (
+          <div className="flex items-center justify-between gap-3 rounded-lg border border-outline-variant bg-surface-container-low px-4 py-2.5">
+            <div className="flex min-w-0 items-center gap-2">
+              <span className="material-symbols-outlined text-[18px] text-slate-blue">
+                attach_file
+              </span>
+              <span className="text-body-md truncate text-on-surface">
+                {attachment.name}
+              </span>
+              <span className="text-label-sm shrink-0 text-on-surface-variant">
+                {formatBytes(attachment.size)}
+              </span>
+            </div>
+            <button
+              type="button"
+              onClick={removeAttachment}
+              aria-label="Remove attachment"
+              className="text-label-sm shrink-0 text-secondary hover:underline"
+            >
+              Remove
+            </button>
+          </div>
+        ) : (
+          <label
+            htmlFor="attachment"
+            className="text-body-md flex w-full cursor-pointer items-center gap-2 rounded-lg border border-dashed border-outline-variant bg-lab-white px-4 py-2.5 text-on-surface-variant transition-colors hover:border-action-orange hover:text-action-orange"
+          >
+            <span className="material-symbols-outlined text-[18px]">
+              attach_file
+            </span>
+            Choose a file
+          </label>
+        )}
+
+        <input
+          ref={fileInputRef}
+          id="attachment"
+          name="attachment"
+          type="file"
+          onChange={handleFileChange}
+          className="sr-only"
+        />
+
+        {errors.attachment && (
+          <p className="text-label-sm mt-1 text-secondary">{errors.attachment}</p>
         )}
       </div>
 
