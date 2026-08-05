@@ -11,6 +11,7 @@ function isValidEmail(value: string) {
 export default function FragranceSampleForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [status, setStatus] = useState<Status>("idle");
 
@@ -37,7 +38,8 @@ export default function FragranceSampleForm() {
       body.set("subject", "Sample Pack Request");
       body.set(
         "message",
-        `${name} requested a fragrance sample pack via the SciTech Fragrances page.`
+        message.trim() ||
+          `${name} requested a fragrance sample pack via the SciTech Fragrances page.`
       );
 
       const res = await fetch("/api/contact", { method: "POST", body });
@@ -46,6 +48,7 @@ export default function FragranceSampleForm() {
       setStatus("success");
       setName("");
       setEmail("");
+      setMessage("");
     } catch {
       setStatus("error");
     }
@@ -92,6 +95,13 @@ export default function FragranceSampleForm() {
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         className="text-body-md w-full rounded border border-outline-variant p-3.5 focus:border-action-orange focus:outline-none focus:ring-1 focus:ring-action-orange"
+      />
+      <textarea
+        placeholder="What's the application? (candles, diffusers, soap, incense, air care...)"
+        rows={4}
+        value={message}
+        onChange={(e) => setMessage(e.target.value)}
+        className="text-body-md w-full resize-none rounded border border-outline-variant p-3.5 focus:border-action-orange focus:outline-none focus:ring-1 focus:ring-action-orange"
       />
       {error && <p className="text-label-sm text-secondary">{error}</p>}
       {status === "error" && (
