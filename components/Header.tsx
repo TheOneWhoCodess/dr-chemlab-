@@ -19,7 +19,7 @@ export default function Header() {
       <nav className="container-page flex h-20 w-full items-center justify-between">
         <Link href="/" className="flex items-center gap-2">
           <Image
-            src="/Drchemlab-4-Blue-Font.png"
+            src="/DrChemLab-4-Blue-font.png"
             alt="DrChemLab"
             width={160}
             height={46}
