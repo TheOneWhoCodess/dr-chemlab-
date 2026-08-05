@@ -60,10 +60,17 @@ export default function ContactForm() {
     setStatus("submitting");
 
     try {
+      const body = new FormData();
+      body.set("name", form.name);
+      body.set("email", form.email);
+      body.set("phone", form.phone);
+      body.set("message", form.message);
+
+      // Note: no Content-Type header here — the browser sets the
+      // multipart/form-data boundary automatically for FormData bodies.
       const res = await fetch("/api/contact", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body,
       });
 
       if (!res.ok) throw new Error("Request failed");
