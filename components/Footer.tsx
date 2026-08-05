@@ -7,22 +7,31 @@ export default function Footer() {
     <footer className="bg-primary text-lab-white">
       <div className="container-page grid grid-cols-1 gap-gutter pb-10 pt-20 md:grid-cols-4">
         <div className="col-span-1 space-y-6">
-          <div className="flex items-center gap-3">
+          <Image
+            src="/DrChemLab-4-Blue-font.png"
+            alt="DrChemLab"
+            width={160}
+            height={46}
+            className="h-9 w-auto brightness-0 invert sm:h-10"
+          />
+          <div className="flex items-center gap-2">
             <Image
               src="/scitech-logobg2.png"
-              alt="SciTech Products"
-              width={40}
-              height={38}
-              className="h-10 w-auto rounded p-1"
+              alt=""
+              width={24}
+              height={24}
+              className="h-6 w-6 shrink-0 rounded-full object-cover"
             />
-            <span className="text-title-lg font-heading text-lab-white">
-              DrChemLab
+            <span className="text-label-md font-semibold text-lab-white">
+              SciTech Products
             </span>
           </div>
           <p className="text-body-md text-surface-container-highest/80">
-            <strong className="text-lab-white">SciTech Products</strong> is an
-            Ambernath, Thane (Maharashtra) based Research firm. Clinical
-            precision in every analysis for high-value research.
+            <span className="mr-1 inline-block rounded-full bg-hero-blue/15 px-2.5 py-0.5 font-semibold text-hero-blue">
+              SciTech Products
+            </span>
+            is Unnao, UP, India based Research firm. Clinical precision in
+            every analysis for high-value research.
           </p>
           <div className="flex gap-4">
             <a
@@ -30,11 +39,15 @@ export default function Footer() {
               target="_blank"
               rel="noreferrer"
               className="flex h-10 w-10 items-center justify-center rounded-full bg-white/5 transition-colors hover:bg-action-orange"
-              aria-label="Twitter"
+              aria-label="X (formerly Twitter)"
             >
-              <span className="material-symbols-outlined text-sm">
-                alternate_email
-              </span>
+              <svg
+                viewBox="0 0 24 24"
+                className="h-4 w-4 fill-current"
+                aria-hidden="true"
+              >
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+              </svg>
             </a>
             <a
               href="mailto:info@drchemlab.com"
@@ -84,14 +97,6 @@ export default function Footer() {
                 </Link>
               </li>
             ))}
-            <li>
-              <Link
-                href="/service/scitech-fragrances"
-                className="transition-colors hover:text-lab-white"
-              >
-                SciTech Fragrances
-              </Link>
-            </li>
           </ul>
         </div>
 
@@ -105,7 +110,7 @@ export default function Footer() {
                 October 14, 2020
               </span>
               <span className="text-label-md text-surface-container-highest/80 transition-colors group-hover:text-lab-white">
-                MATERIAL CHARACTERIZATION &ndash; BLOG
+                MATERIAL CHARACTERIZATION – BLOG
               </span>
             </Link>
           </div>
@@ -119,8 +124,20 @@ export default function Footer() {
             All rights reserved. Clinical precision in every analysis.
           </p>
           <div className="text-label-sm flex gap-gutter text-outline-variant">
-            <a href="https://twitter.com/DrChemLab1" target="_blank" rel="noreferrer" className="transition-colors hover:text-action-orange">
-              Twitter
+            <a
+              href="https://twitter.com/DrChemLab1"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="X (formerly Twitter)"
+              className="transition-colors hover:text-action-orange"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                className="h-4 w-4 fill-current"
+                aria-hidden="true"
+              >
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+              </svg>
             </a>
           </div>
         </div>
