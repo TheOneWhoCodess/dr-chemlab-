@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
+import FragranceSampleForm from "@/components/FragranceSampleForm";
 import { fragranceCategories, fragranceTotal } from "@/lib/fragrances";
 
 export const metadata: Metadata = {
@@ -165,30 +166,7 @@ export default function ScitechFragrancesPage() {
             </div>
           </div>
 
-          <form className="space-y-4 rounded-lg bg-lab-white p-8 text-on-surface clinical-shadow">
-            <h3 className="text-title-lg mb-1 text-deep-navy">
-              Request a Sample Pack
-            </h3>
-            <p className="text-body-md mb-4 text-on-surface-variant">
-              Tell us your application and we&apos;ll send curated samples.
-            </p>
-            <input
-              type="text"
-              placeholder="Full Name"
-              className="text-body-md w-full rounded border border-outline-variant p-3.5 focus:border-action-orange focus:outline-none focus:ring-1 focus:ring-action-orange"
-            />
-            <input
-              type="email"
-              placeholder="Email Address"
-              className="text-body-md w-full rounded border border-outline-variant p-3.5 focus:border-action-orange focus:outline-none focus:ring-1 focus:ring-action-orange"
-            />
-            <Link
-              href="/contacts"
-              className="btn-primary w-full !bg-action-orange"
-            >
-              Request Technical Data Sheet
-            </Link>
-          </form>
+          <FragranceSampleForm />
         </div>
       </section>
 
@@ -273,15 +251,8 @@ export default function ScitechFragrancesPage() {
               <span className="material-symbols-outlined text-[18px]">mail</span>
               scitechfrag@drchemlab.com
             </a>
-            <a
-              href="mailto:scitechproducts@drchemlab.com"
-              className="flex items-center justify-center gap-2 rounded-lg border border-outline-variant px-6 py-3 text-on-surface-variant transition-colors hover:border-action-orange hover:text-action-orange"
-            >
-              <span className="material-symbols-outlined text-[18px]">mail</span>
-              scitechproducts@drchemlab.com
-            </a>
           </div>
-          <Link href="/contacts" className="btn-primary">
+          <Link href="/contacts?type=fragrance" className="btn-primary">
             Send an Inquiry
           </Link>
         </div>

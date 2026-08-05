@@ -11,12 +11,12 @@ const quickContacts = [
   {
     icon: "call",
     label: "Hotline",
-    lines: ["+91-515-7960309"],
+    lines: ["+91 88281 36860"],
   },
   {
     icon: "chat",
     label: "SMS / WhatsApp",
-    lines: ["+91 72088 44324"],
+    lines: ["+91 88281 36860"],
   },
   {
     icon: "mail",
@@ -25,7 +25,14 @@ const quickContacts = [
   },
 ];
 
-export default function ContactsPage() {
+export default async function ContactsPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ type?: string }>;
+}) {
+  const { type } = await searchParams;
+  const defaultInquiryType = type === "fragrance" ? "fragrance" : "general";
+
   return (
     <>
       <PageHero
@@ -71,7 +78,7 @@ export default function ContactsPage() {
               Do you have a question? A complaint? Or need any help to choose
               the right product from us? Feel free to contact us.
             </p>
-            <ContactForm />
+            <ContactForm defaultInquiryType={defaultInquiryType} />
           </div>
 
           {/* Info panel */}

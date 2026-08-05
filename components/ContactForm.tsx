@@ -30,8 +30,15 @@ function formatBytes(bytes: number) {
   return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
 }
 
-export default function ContactForm() {
+export default function ContactForm({
+  defaultInquiryType = "general",
+}: {
+  defaultInquiryType?: "general" | "fragrance";
+}) {
   const [form, setForm] = useState<FormState>(initialState);
+  const [inquiryType, setInquiryType] = useState<"general" | "fragrance">(
+    defaultInquiryType
+  );
   const [attachment, setAttachment] = useState<File | null>(null);
   const [errors, setErrors] = useState<
     Partial<Record<keyof FormState | "attachment", string>>
@@ -99,6 +106,7 @@ export default function ContactForm() {
       body.set("email", form.email);
       body.set("phone", form.phone);
       body.set("message", form.message);
+      body.set("inquiryType", inquiryType);
       if (attachment) {
         body.set("attachment", attachment);
       }
@@ -140,6 +148,21 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} noValidate className="space-y-5">
+      <div>
+        <label htmlFor="inquiryType" className="text-label-md mb-1.5 block text-on-surface">
+          What is this about?
+        </label>
+        <select
+          id="inquiryType"
+          value={inquiryType}
+          onChange={(e) => setInquiryType(e.target.value as "general" | "fragrance")}
+          className="text-body-md w-full rounded-lg border border-outline-variant bg-lab-white px-4 py-2.5 outline-none transition-colors focus:border-action-orange"
+        >
+          <option value="general">General Inquiry</option>
+          <option value="fragrance">SciTech Fragrances</option>
+        </select>
+      </div>
+
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
         <div>
           <label htmlFor="name" className="text-label-md mb-1.5 block text-on-surface">
