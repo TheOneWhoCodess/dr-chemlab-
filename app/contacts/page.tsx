@@ -21,7 +21,12 @@ const quickContacts = [
   {
     icon: "mail",
     label: "Email",
-    lines: ["info@drchemlab.com"],
+    lines: [
+      "info@drchemlab.com",
+      "sales@drchemlab.com",
+      "scitechproducts@drchemlab.com",
+      "scitechfrag@drchemlab.com"
+    ],
   },
 ];
 

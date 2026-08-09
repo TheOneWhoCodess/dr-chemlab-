@@ -30,8 +30,7 @@ export default function Footer() {
             <span className="mr-1 inline-block rounded-full bg-hero-blue/15 px-2.5 py-0.5 font-semibold text-hero-blue">
               SciTech Products
             </span>
-            is Unnao, UP, India based Research firm. Clinical precision in
-            every analysis for high-value research.
+            (a Dr Chem Lab venture) is a technology-driven company based in Ambernath, Thane, Maharashtra, India.
           </p>
           <div className="flex gap-4">
             <a
