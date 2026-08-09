@@ -116,6 +116,6 @@ export const navLinks = [
     ],
   },
   { label: "Useful Resources", href: "/useful-resources" },
-  { label: "SciTech Product", href: "/service/scitech-fragrances" },
+  { label: "SciTech Products", href: "/service/scitech-fragrances" },
   { label: "Contact Us", href: "/contacts" },
 ];

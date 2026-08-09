@@ -130,45 +130,31 @@ export default function ScitechFragrancesPage() {
         </div>
       </section>
 
-      {/* Clinical Formulation Standards CTA */}
-      <section className="bg-primary text-lab-white">
-        <div className="container-page grid grid-cols-1 gap-gutter py-16 lg:grid-cols-2 lg:items-center">
-          <div>
-            <Image
-              src="/DrChemLab-4-Blue-font.png"
-              alt="SciTech Products"
-              width={56}
-              height={53}
-              className="mb-4 h-14 w-auto rounded bg-white/95 p-1"
-            />
-            <h2 className="text-headline-lg mb-4">
-              Clinical Formulation Standards
-            </h2>
-            <p className="text-body-lg mb-8 max-w-md text-on-primary-container">
-              Every fragrance in our SciTech collection undergoes rigorous
-              analytical testing for purity, stability, and safety
-              compliance. We ensure that sensory excellence meets clinical
-              chemical precision.
-            </p>
-            <div className="flex flex-wrap gap-8">
-              <div className="flex items-center gap-3">
-                <span className="material-symbols-outlined text-action-orange">
-                  call
-                </span>
-                <span className="text-label-md">+91 72088 44324</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <span className="material-symbols-outlined text-action-orange">
-                  verified
-                </span>
-                <span className="text-label-md">IFRA Compliant</span>
-              </div>
-            </div>
-          </div>
+     {/* Clinical Formulation Standards CTA */}
+<section className="bg-primary text-lab-white">
+  <div className="container-page grid grid-cols-1 gap-gutter py-20 lg:grid-cols-2 lg:items-center">
+    <div className="flex flex-col gap-6">
+      <a
+        href="tel:+917208844324"
+        className="group flex items-center gap-5 rounded-xl border border-lab-white/15 bg-lab-white/5 px-6 py-6 transition-colors hover:border-action-orange/50 hover:bg-lab-white/10"
+      >
+        <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-lg bg-action-orange/15 text-action-orange transition-colors group-hover:bg-action-orange group-hover:text-lab-white">
+          <span className="material-symbols-outlined text-3xl">call</span>
+        </span>
+        <span className="text-title-lg">+91 72088 44324</span>
+      </a>
 
-          <FragranceSampleForm />
-        </div>
-      </section>
+      <div className="flex items-center gap-5 rounded-xl border border-lab-white/15 bg-lab-white/5 px-6 py-6">
+        <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-lg bg-action-orange/15 text-action-orange">
+          <span className="material-symbols-outlined text-3xl">verified</span>
+        </span>
+        <span className="text-title-lg">IFRA Compliant</span>
+      </div>
+    </div>
+
+    <FragranceSampleForm />
+  </div>
+</section>
 
       {/* Full fragrance directory */}
       <section className="py-section-gap container-page">
