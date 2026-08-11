@@ -194,7 +194,7 @@ export default function Home() {
       An Ambernath, Thane (Maharashtra) based research firm behind
       DrChemLab &mdash; supplying specialty chemicals, custom
       synthesis, and a full line of SciTech Fragrances, all backed by
-      clinical precision in every analysis.
+      quality precision in every analysis.
     </p>
     <div className="flex flex-wrap gap-6">
       <Link

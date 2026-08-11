@@ -63,12 +63,12 @@ export default async function ContactsPage({
               SciTech Products
             </span>
             <address className="text-body-md not-italic leading-relaxed text-tertiary-fixed/80">
-              H-209, K2 Premises CHS, Anand Nagar, Ambernath (Thane)
-              <br />
-              Additional MIDC Ambernath
-              <br />
-              Thane, Maharashtra, 421506, India
-            </address>
+  H-209, K2 Premises CHS, Udyog Bhawan2
+  <br />
+  Additional MIDC Anand Nagar
+  <br />
+  Thane, Maharashtra, 421506, India
+</address>s
           </div>
         </div>
 
